@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gao Le - Portfolio</title>
+    <title>Lee Gao Le - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -20,6 +20,9 @@
             --light: #ffffff;
             --text-dark: #0d0d0d;
             --accent: #2563eb;
+            --trans-fast: 160ms;
+            --trans-medium: 260ms;
+            --trans-slow: 420ms;
         }
 
         body {
@@ -40,6 +43,33 @@
             z-index: -1;
             opacity: 0.03;
             overflow: hidden;
+        }
+
+        /* Accessibility helpers */
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            left: 12px;
+            top: 12px;
+            width: auto;
+            height: auto;
+            padding: 8px 12px;
+            background: #fff;
+            color: var(--primary);
+            border-radius: 6px;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.08);
+            z-index: 9999;
+        }
+
+        /* reduced motion respect */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0ms !important; transition-duration: 0ms !important; }
         }
 
         .code-snippet {
@@ -64,53 +94,49 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 60px 20px 40px;
-            background: var(--light);
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.1);
+            padding: 56px 18px 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: #fff;
+            border-radius: 0 0 22px 22px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.12);
+            -webkit-font-smoothing:antialiased;
         }
 
         h1 {
-            font-size: 3.2em;
-            margin-bottom: 10px;
-            color: var(--primary);
+            font-size: 2.6rem;
+            margin-bottom: 6px;
+            color: #fff;
             font-weight: 800;
-            letter-spacing: -1px;
+            letter-spacing: -0.6px;
         }
 
         .subtitle {
-            font-size: 1.15em;
-            color: #0d0d0d;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 12px;
             font-weight: 500;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .application-badge {
             display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 13px 32px;
-            border-radius: 25px;
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 999px;
             font-weight: 700;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
-            transition: all 0.3s ease;
+            margin-top: 8px;
+            transition: transform 180ms ease, background 180ms ease;
             position: relative;
-            overflow: hidden;
             z-index: 1;
             font-size: 0.95em;
-            letter-spacing: 0.5px;
-        }
-
-        .application-badge::before {
-            display: none;
+            letter-spacing: 0.4px;
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
         .application-badge:hover {
-            background: var(--primary-light);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.16);
         }
 
        
@@ -131,11 +157,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 20px;
+            gap: 12px;
         }
 
         .nav-links {
             display: flex;
-            gap: 35px;
+            gap: 28px;
+            align-items: center;
         }
 
         .nav-link {
@@ -171,13 +199,13 @@
 
         
         .section {
-            background: var(--light);
+            background: linear-gradient(180deg,#ffffff,#fbfbff);
             border-left: 5px solid var(--primary);
-            border-radius: 15px;
-            padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 14px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 28px rgba(15,23,42,0.04);
+            transition: transform 0.28s, box-shadow 0.28s;
         }
 
         .section:hover {
@@ -220,15 +248,16 @@
         }
 
         .video-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 24px;
-            border: 1px solid #e0e0e0;
-            border-left: 5px solid var(--primary);
-            transition: all 0.3s ease;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 18px;
+            border: 1px solid rgba(230,230,240,0.9);
+            border-left: 4px solid var(--primary);
+            transition: transform 220ms ease, box-shadow 220ms ease;
             cursor: pointer;
             overflow: hidden;
             position: relative;
+            box-shadow: 0 6px 18px rgba(16,24,40,0.04);
         }
 
         .video-card::before {
@@ -236,23 +265,20 @@
         }
 
         .video-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 14px 36px rgba(16,24,40,0.08);
         }
 
         .video-placeholder {
             width: 100%;
             height: 180px;
             background: linear-gradient(135deg, #f5f5f5, #efefef);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            display: block;
+            margin-bottom: 12px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: transform 220ms ease;
         }
 
         .video-card:hover .video-placeholder {
@@ -264,11 +290,34 @@
             display: none;
         }
 
+        .video-placeholder img.thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--trans-medium) ease;
+        }
+
+        .video-card:focus {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+        }
+
+        /* smooth transitions site-wide */
+        a, button, .video-card, .nav-link, .application-badge, .section, .video-placeholder, .modal-content {
+            transition: all var(--trans-medium) ease;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(37,99,235,0.18);
+            outline-offset: 3px;
+        }
+
         .video-title {
-            font-size: 1.15em;
-            margin-bottom: 10px;
+            font-size: 1.06rem;
+            margin-bottom: 8px;
             color: #0d0d0d;
-            transition: color 0.3s;
+            transition: color 0.2s;
             position: relative;
             z-index: 1;
             font-weight: 700;
@@ -289,13 +338,14 @@
 
         .visit-count {
             display: inline-block;
-            background: var(--primary);
+            background: rgba(37,99,235,0.95);
             color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.82em;
+            font-weight: 700;
             margin-top: 10px;
+            box-shadow: 0 6px 18px rgba(37,99,235,0.06);
         }
         
         .achievement-list {
@@ -605,27 +655,58 @@
             h1 {
                 font-size: 2.2em;
             }
-            
-            .section {
-                padding: 30px;
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 12px 20px;
             }
-            
+
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+                padding: 10px 12px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+            }
+
+            .nav-link {
+                padding: 10px 6px;
+                border-radius: 8px;
+                display: block;
+                width: 100%;
+            }
+
+            .section {
+                padding: 28px;
+            }
+
             .section-title {
                 font-size: 1.6em;
             }
-            
-            .nav-links {
-                display: none;
+
+            .video-placeholder {
+                height: 160px;
+            }
+
+            .modal-content {
+                padding: 24px;
+                max-width: 96%;
             }
         }
     </style>
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     
     <div class="code-background" id="codeBg"></div>
 
     <header>
-        <h1>Gao Le</h1>
+        <h1>Lee Gao Le</h1>
         <p class="subtitle" id="animatedSubtitle">Hi I am a Software Engineer</p>
         <div class="application-badge">Portfolio</div>
     </header>
@@ -649,6 +730,7 @@
     </nav>
 
     
+    <main id="main">
     <div class="container">
        
         <section id="about" class="section">
@@ -683,19 +765,25 @@
                 <span class="icon"><i class="fas fa-laptop-code"></i></span>
                 Project Showcase
             </h2>
-            <div class="video-grid">
-                <div class="video-card" data-video="meme-factory">
-                    <h3 class="video-title">Meme Factory Tycoon</h3>
-                    <p class="video-description">Developed backend systems and APIs for this Roblox game that reached over 1.2 million visits. Implemented game mechanics, data persistence, and server-client communication.</p>
-                    <div class="visit-count">1.2M+ Visits</div>
-                </div>
-                
-                <div class="video-card" data-video="insect-land">
-                    <h3 class="video-title">My Insect Land</h3>
-                    <p class="video-description">Managed analytics and data tracking for this Roblox game with 11.4k visits. Implemented player behavior tracking, performance metrics, and data visualization tools.</p>
-                    <div class="visit-count">11.4k+ Visits</div>
-                </div>
-            </div>
+                    <div class="video-grid">
+                        <div class="video-card" data-video="meme-factory" role="button" tabindex="0" aria-label="Open Meme Factory project">
+                            <div class="video-placeholder">
+                                <img class="thumb" src="https://i.ibb.co/7tgt5q66/image.png" alt="Meme Factory Tycoon screenshot" loading="lazy">
+                            </div>
+                            <h3 class="video-title">Meme Factory Tycoon</h3>
+                            <p class="video-description">Developed backend systems and APIs for this Roblox game that reached over 1.2 million visits. Implemented game mechanics, data persistence, and server-client communication.</p>
+                            <div class="visit-count">1.2M+ Visits</div>
+                        </div>
+
+                        <div class="video-card" data-video="insect-land" role="button" tabindex="0" aria-label="Open My Insect Land project">
+                            <div class="video-placeholder">
+                                <img class="thumb" src="https://i.ibb.co/wNX1kVKW/image.png" alt="My Insect Land screenshot" loading="lazy">
+                            </div>
+                            <h3 class="video-title">My Insect Land</h3>
+                            <p class="video-description">Managed analytics and data tracking for this Roblox game with 11.4k visits. Implemented player behavior tracking, performance metrics, and data visualization tools.</p>
+                            <div class="visit-count">11.4k+ Visits</div>
+                        </div>
+                    </div>
         </section>
 
        
@@ -847,11 +935,11 @@
     </div>
 
     
-    <div class="modal" id="videoModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
+    <div class="modal" id="videoModal" aria-hidden="true">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="close-modal" id="closeModal" aria-label="Close project modal">&times;</button>
             <h2 id="modalTitle">Project Title</h2>
-            <img id="modalImage" src="" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin: 20px 0;">
+            <img id="modalImage" src="" class="modal-image" alt="Project image">
             <p id="modalDescription">Project description will appear here.</p>
             <a href="#" id="modalLink" style="display: inline-block; margin-top: 20px; background: var(--primary); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: 600;">View Project</a>
         </div>
@@ -923,48 +1011,93 @@
         const modalLink = document.getElementById('modalLink');
         const modalImage = document.getElementById('modalImage');
         
-        document.querySelectorAll('.video-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const videoType = card.getAttribute('data-video');
-                
-                if (videoType === 'meme-factory') {
-                    modalTitle.textContent = 'Meme Factory Tycoon';
-                    modalImage.src = 'https://i.ibb.co/7tgt5q66/image.png';
-                    modalDescription.textContent = 'As the Developer and API Engineer for Meme Factory Tycoon, I was responsible for designing and implementing the backend systems that powered this Roblox game. This included creating efficient APIs for game data, implementing secure player data storage, optimizing server performance to handle high traffic, and ensuring smooth gameplay experiences for over 1.2 million players.';
-                    modalLink.href = 'https://www.roblox.com/games/85828793154101/Meme-Factory-Tycoon';
-                    modalLink.textContent = 'Play Meme Factory Tycoon';
-                } else if (videoType === 'insect-land') {
-                    modalTitle.textContent = 'My Insect Land';
-                    modalImage.src = 'https://i.ibb.co/wNX1kVKW/image.png';
-                    modalDescription.textContent = 'As the Analytics Manager for My Insect Land, I implemented comprehensive data tracking systems to monitor player behavior, game performance, and engagement metrics. I developed tools to visualize this data, providing insights that helped improve player retention and game mechanics. My work contributed to understanding how players interact with the game and identifying areas for enhancement.';
-                    modalLink.href = 'https://www.roblox.com/games/117562146190458/My-Insect-Land';
-                    modalLink.textContent = 'Play My Insect Land';
-                } else if (videoType === 'robotics') {
-                    modalTitle.textContent = 'Robotics Projects';
-                    modalImage.src = '';
-                    modalDescription.textContent = 'My robotics projects involve programming various robotic systems with a focus on efficient code and reliable performance. I have worked on sensor integration for environmental awareness, motor control algorithms for precise movement, and navigation systems for autonomous operation. These projects demonstrate my ability to apply programming skills to physical systems and solve real-world problems.';
-                    modalLink.href = '#';
-                    modalLink.textContent = 'View Robotics Projects';
+        // Focus management for modal
+        let _lastFocused = null;
+        function trapTabKey(e) {
+            if (e.key !== 'Tab') return;
+            const focusable = videoModal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+                if (document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
                 }
-                
-                videoModal.style.display = 'flex';
-                videoModal.classList.add('active');
+            } else {
+                if (document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        }
+
+        function openModalFor(type, triggerEl) {
+            _lastFocused = triggerEl || document.activeElement;
+            if (type === 'meme-factory') {
+                modalTitle.textContent = 'Meme Factory Tycoon';
+                modalImage.src = 'https://i.ibb.co/7tgt5q66/image.png';
+                modalImage.alt = 'Meme Factory Tycoon screenshot';
+                modalDescription.textContent = 'As the Developer and API Engineer for Meme Factory Tycoon, I was responsible for designing and implementing the backend systems that powered this Roblox game. This included creating efficient APIs for game data, implementing secure player data storage, optimizing server performance to handle high traffic, and ensuring smooth gameplay experiences for over 1.2 million players.';
+                modalLink.href = 'https://www.roblox.com/games/85828793154101/Meme-Factory-Tycoon';
+                modalLink.textContent = 'Play Meme Factory Tycoon';
+            } else if (type === 'insect-land') {
+                modalTitle.textContent = 'My Insect Land';
+                modalImage.src = 'https://i.ibb.co/wNX1kVKW/image.png';
+                modalImage.alt = 'My Insect Land screenshot';
+                modalDescription.textContent = 'As the Analytics Manager for My Insect Land, I implemented comprehensive data tracking systems to monitor player behavior, game performance, and engagement metrics. I developed tools to visualize this data, providing insights that helped improve player retention and game mechanics. My work contributed to understanding how players interact with the game and identifying areas for enhancement.';
+                modalLink.href = 'https://www.roblox.com/games/117562146190458/My-Insect-Land';
+                modalLink.textContent = 'Play My Insect Land';
+            } else {
+                modalTitle.textContent = 'Robotics Projects';
+                modalImage.src = '';
+                modalImage.alt = '';
+                modalDescription.textContent = 'My robotics projects involve programming various robotic systems with a focus on efficient code and reliable performance. I have worked on sensor integration for environmental awareness, motor control algorithms for precise movement, and navigation systems for autonomous operation. These projects demonstrate my ability to apply programming skills to physical systems and solve real-world problems.';
+                modalLink.href = '#';
+                modalLink.textContent = 'View Robotics Projects';
+            }
+            videoModal.style.display = 'flex';
+            videoModal.classList.add('active');
+            videoModal.setAttribute('aria-hidden', 'false');
+            // focus management
+            setTimeout(() => {
+                try { closeModal.focus(); } catch (e) {}
+            }, 50);
+            document.addEventListener('keydown', trapTabKey);
+        }
+
+        document.querySelectorAll('.video-card').forEach(card => {
+            function activate() { openModalFor(card.getAttribute('data-video'), card); }
+            card.addEventListener('click', activate);
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    activate();
+                }
             });
         });
 
         closeModal.addEventListener('click', () => {
             videoModal.classList.remove('active');
+            videoModal.setAttribute('aria-hidden', 'true');
+            document.removeEventListener('keydown', trapTabKey);
+            try { if (_lastFocused) _lastFocused.focus(); } catch (e) {}
+            try { modalImage.src = ''; } catch (e) {}
             setTimeout(() => {
                 videoModal.style.display = 'none';
-            }, 400);
+            }, 300);
         });
 
         window.addEventListener('click', (e) => {
             if (e.target === videoModal) {
-                videoModal.classList.remove('active');
-                setTimeout(() => {
-                    videoModal.style.display = 'none';
-                }, 400);
+                closeModal.click();
+            }
+        });
+
+        // global escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeModal.click();
             }
         });
 
@@ -972,6 +1105,7 @@
         const subtitleElement = document.getElementById('animatedSubtitle');
         const text1 = 'Hi I am a Software Engineer';
         const text2 = 'Hi I am a Backend Engineer';
+        const text3 = 'Hi I am a Robotics Programmer';
         const baseText = 'Hi I am a ';
         let isSoftwareEngineer = true;
 
