@@ -200,38 +200,7 @@
             animation: codeFlicker 2.6s ease-in-out infinite;
         }
 
-        /* Decorative terminal / code block */
-        .terminal {
-            margin: 18px auto 0;
-            max-width: 520px;
-            background: rgba(0,0,0,0.24);
-            border: 1px solid rgba(0,217,255,0.06);
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            color: #9fefff;
-            font-size: 0.85rem;
-            box-shadow: inset 0 0 18px rgba(0,217,255,0.02), 0 6px 20px rgba(0,217,255,0.02);
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .terminal .term-line {
-            opacity: 0.92;
-            white-space: nowrap;
-        }
-
-        .terminal .term-caret {
-            display: inline-block;
-            width: 10px;
-            height: 14px;
-            background: linear-gradient(90deg, #00d9ff, #7ef5ff);
-            margin-left: 6px;
-            border-radius: 2px;
-            animation: shimmer 1.4s linear infinite;
-        }
+        /* (removed decorative header terminal) */
         
         header {
             position: relative;
@@ -485,7 +454,7 @@
         }
 
         .code-block {
-            font-family: 'Courier New', monospace;
+            font-family: 'Montserrat', 'Courier New', monospace;
             background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
             color: #bff7ff;
             padding: 12px 14px;
@@ -493,6 +462,24 @@
             border: 1px solid rgba(0,217,255,0.06);
             overflow-x: auto;
             box-shadow: inset 0 0 14px rgba(0,217,255,0.02);
+            white-space: pre;
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        /* token colors for CSS-only syntax highlighting */
+        .code-block .kw { color: #7ef5ff; font-weight: 700; }
+        .code-block .fn { color: #9fefff; }
+        .code-block .str { color: #a8f0c8; }
+        .code-block .num { color: #ffd17a; }
+        .code-block .comment { color: rgba(255,255,255,0.28); font-style: italic; }
+        .code-block .var { color: #c7f3ff; }
+
+        .code-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 320ms ease, transform 320ms ease;
         }
 
         .video-title {
@@ -905,10 +892,6 @@
         <h1>Lee Gao Le</h1>
         <p class="subtitle" id="animatedSubtitle">Hi I am a Software Engineer</p>
         <div class="application-badge">Portfolio</div>
-        <div class="terminal" aria-hidden="true" id="decorTerminal">
-            <div class="term-line" id="termLine">$ initializing...</div>
-            <div class="term-caret" aria-hidden="true"></div>
-        </div>
     </header>
 
     
@@ -944,6 +927,9 @@
                 My journey in programming started last year, and I've since developed expertise in API design, database management, 
                 and scalable backend architectures. I'm constantly exploring new technologies and applying them to solve real-world problems.
             </p>
+            <!-- Animated code sample (C++ / Python) -->
+            <pre class="code-block" aria-hidden="true" style="margin-top:18px;"><code id="animatedCode" class="code-content"></code></pre>
+
             <div class="skills-container" style="margin-top: 30px;">
                 <div class="skill-category">
                     <h3><i class="fas fa-code"></i> Technical Focus</h3>
@@ -1186,9 +1172,6 @@
                     el.style.opacity = '1';
                     el.style.transform = 'none';
                 });
-                // Make terminal static (decorative)
-                const termStatic = document.getElementById('termLine');
-                if (termStatic) termStatic.textContent = '$ ready';
                 return;
             }
 
@@ -1205,34 +1188,50 @@
                 setTimeout(() => el.classList.remove('glow-pulse'), 1600);
             });
 
-            // Terminal typing decoration in header
-            const term = document.getElementById('termLine');
-            const lines = ['npm run start', 'node server.js', 'git push origin main', 'deploy: success'];
-            let li = 0;
-            function typeLine() {
-                const text = lines[li % lines.length];
-                let idx = 0;
-                if (!term) return;
-                term.textContent = '';
-                const t = setInterval(() => {
-                    term.textContent += text[idx++] || '';
-                    if (idx > text.length) {
-                        clearInterval(t);
-                        setTimeout(() => {
-                            // delete
-                            let del = setInterval(() => {
-                                term.textContent = term.textContent.slice(0, -1);
-                                if (term.textContent.length === 0) {
-                                    clearInterval(del);
-                                    li++;
-                                    setTimeout(typeLine, 300);
-                                }
-                            }, 40);
-                        }, 900);
-                    }
-                }, 40);
+            // Animated code examples (C++ / Python) — crossfade highlighted samples
+            const animatedCode = document.getElementById('animatedCode');
+            const examples = [
+                // C++ example (highlighted tokens)
+                '<div class="comment">// C++: simple add function</div>\n' +
+                '<div><span class="kw">#include</span> <span class="str">&lt;iostream&gt;</span></div>\n' +
+                '<div><span class="kw">int</span> <span class="fn">add</span>(<span class="kw">int</span> a, <span class="kw">int</span> b) {</div>\n' +
+                '<div>&nbsp;&nbsp;<span class="kw">return</span> a + b;</div>\n' +
+                '<div>}</div>',
+
+                // Python example
+                '<div class="comment"># Python: simple add function</div>\n' +
+                '<div><span class="kw">def</span> <span class="fn">add</span>(<span class="var">a</span>, <span class="var">b</span>):</div>\n' +
+                '<div>&nbsp;&nbsp;<span class="kw">return</span> a + b</div>'
+            ];
+
+            let exIndex = 0;
+            function showExample(i) {
+                if (!animatedCode) return;
+                // fade out
+                animatedCode.style.transition = 'opacity 320ms ease, transform 320ms ease';
+                animatedCode.style.opacity = '0';
+                animatedCode.style.transform = 'translateY(8px)';
+                setTimeout(() => {
+                    animatedCode.innerHTML = examples[i];
+                    // ensure token colors apply, then fade in
+                    requestAnimationFrame(() => {
+                        animatedCode.style.opacity = '1';
+                        animatedCode.style.transform = 'translateY(0)';
+                    });
+                }, 260);
             }
-            setTimeout(typeLine, 800);
+
+            // initial state
+            if (animatedCode) {
+                animatedCode.style.opacity = '0';
+                animatedCode.style.transform = 'translateY(8px)';
+                showExample(exIndex);
+                // cycle every 3.6s
+                setInterval(() => {
+                    exIndex = (exIndex + 1) % examples.length;
+                    showExample(exIndex);
+                }, 3600);
+            }
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
