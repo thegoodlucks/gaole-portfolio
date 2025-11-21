@@ -14,12 +14,15 @@
         }
 
         :root {
-            --primary: #2563eb;
-            --primary-light: #3b82f6;
-            --dark: #f5f5f5;
-            --light: #ffffff;
-            --text-dark: #0d0d0d;
-            --accent: #2563eb;
+            --primary: #00d9ff;
+            --primary-light: #7ef5ff;
+            --primary-dark: #00b7cc;
+            --dark-bg: #080b1f;
+            --light: #1a1f3a;
+            --card-bg: #0f1426;
+            --text-dark: #e0e6ff;
+            --muted: #a8afc0;
+            --border-color: rgba(0,217,255,0.08);
             --trans-fast: 160ms;
             --trans-medium: 260ms;
             --trans-slow: 420ms;
@@ -27,11 +30,12 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: var(--light);
-            color: #1a1a1a;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a2332 100%);
+            color: var(--text-dark);
             overflow-x: hidden;
             line-height: 1.6;
             font-weight: 400;
+            min-height: 100vh;
         }
 
         .code-background {
@@ -40,9 +44,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.03;
+            z-index: 1;
+            opacity: 0.08;
             overflow: hidden;
+            pointer-events: none;
         }
 
         /* Accessibility helpers */
@@ -74,20 +79,158 @@
 
         .code-snippet {
             position: absolute;
-            color: var(--primary);
-            font-family: monospace;
+            color: rgba(0, 217, 255, 0.3);
+            font-family: 'Courier New', monospace;
             white-space: nowrap;
-            font-size: 16px;
-            animation: floatCode 20s linear infinite;
+            font-size: 14px;
+            animation: floatCode 25s linear infinite;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
         }
 
         @keyframes floatCode {
             0% {
                 transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
             }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 217, 255, 0.1), inset 0 0 20px rgba(0, 217, 255, 0.05); }
+            50% { box-shadow: 0 0 40px rgba(0, 217, 255, 0.2), inset 0 0 30px rgba(0, 217, 255, 0.1); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0 0; }
+            50% { background-position: 1000px 0; }
+        }
+
+        @keyframes codeFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(96, 165, 250, 0.5);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        /* Utility animation classes */
+        .animate-slideUp {
+            animation: slideInUp 520ms cubic-bezier(.2,.9,.2,1) both;
+        }
+
+        .glow-pulse {
+            animation: glowPulse 3.2s ease-in-out infinite;
+        }
+
+        .shimmer-bg {
+            background-image: linear-gradient(90deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.02) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2.8s linear infinite;
+        }
+
+        .code-flicker {
+            animation: codeFlicker 2.6s ease-in-out infinite;
+        }
+
+        /* Decorative terminal / code block */
+        .terminal {
+            margin: 18px auto 0;
+            max-width: 520px;
+            background: rgba(0,0,0,0.24);
+            border: 1px solid rgba(0,217,255,0.06);
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            color: #9fefff;
+            font-size: 0.85rem;
+            box-shadow: inset 0 0 18px rgba(0,217,255,0.02), 0 6px 20px rgba(0,217,255,0.02);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .terminal .term-line {
+            opacity: 0.92;
+            white-space: nowrap;
+        }
+
+        .terminal .term-caret {
+            display: inline-block;
+            width: 10px;
+            height: 14px;
+            background: linear-gradient(90deg, #00d9ff, #7ef5ff);
+            margin-left: 6px;
+            border-radius: 2px;
+            animation: shimmer 1.4s linear infinite;
         }
         
         header {
@@ -95,10 +238,12 @@
             z-index: 10;
             text-align: center;
             padding: 56px 18px 36px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            color: #fff;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, rgba(0, 217, 255, 0.1) 100%);
+            border-top: 3px solid rgba(0, 217, 255, 0.3);
+            border-bottom: 2px solid rgba(0, 217, 255, 0.2);
+            color: #e0e6ff;
             border-radius: 0 0 22px 22px;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.12);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15), inset 0 0 40px rgba(0, 217, 255, 0.05);
             -webkit-font-smoothing:antialiased;
         }
 
@@ -112,31 +257,33 @@
 
         .subtitle {
             font-size: 1rem;
-            color: rgba(255,255,255,0.95);
+            color: #c0c7d8;
             margin-bottom: 12px;
             font-weight: 500;
             letter-spacing: 0.3px;
+            text-shadow: 0 0 8px rgba(0,217,255,0.03);
         }
 
         .application-badge {
             display: inline-block;
-            background: rgba(255,255,255,0.12);
-            color: #fff;
+            background: linear-gradient(90deg, rgba(0,217,255,0.06), rgba(0,217,255,0.02));
+            color: var(--text-dark);
             padding: 9px 20px;
             border-radius: 999px;
             font-weight: 700;
             margin-top: 8px;
-            transition: transform 180ms ease, background 180ms ease;
+            transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
             position: relative;
             z-index: 1;
             font-size: 0.95em;
             letter-spacing: 0.4px;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid rgba(0,217,255,0.12);
+            box-shadow: 0 6px 18px rgba(0,217,255,0.04), inset 0 0 10px rgba(0,217,255,0.02);
         }
 
         .application-badge:hover {
             transform: translateY(-3px);
-            background: rgba(255,255,255,0.16);
+            background: linear-gradient(90deg, rgba(0,217,255,0.12), rgba(0,217,255,0.04));
         }
 
        
@@ -144,10 +291,10 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: var(--light);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            background: #080b1f;
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.1);
             padding: 15px 0;
-            border-bottom: none;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
         }
 
         .nav-container {
@@ -167,7 +314,7 @@
         }
 
         .nav-link {
-            color: #0d0d0d;
+            color: #e0e6ff;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -178,7 +325,7 @@
         }
 
         .nav-link:hover {
-            color: var(--primary);
+            color: #00d9ff;
         }
 
         .nav-link::after {
@@ -188,7 +335,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: #00d9ff;
             transition: width 0.3s ease;
             border-radius: 1px;
         }
@@ -199,31 +346,34 @@
 
         
         .section {
-            background: linear-gradient(180deg,#ffffff,#fbfbff);
-            border-left: 5px solid var(--primary);
+            background: linear-gradient(135deg, #0f1426 0%, #1a1f3a 100%);
+            border-left: 5px solid rgba(0, 217, 255, 0.4);
             border-radius: 14px;
             padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 8px 28px rgba(15,23,42,0.04);
+            box-shadow: 0 8px 28px rgba(0, 217, 255, 0.08), inset 0 0 20px rgba(0, 217, 255, 0.02);
             transition: transform 0.28s, box-shadow 0.28s;
+            border: 1px solid rgba(0, 217, 255, 0.1);
         }
 
         .section:hover {
             transform: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 32px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.04);
+            border-color: rgba(0, 217, 255, 0.2);
         }
 
         .section-title {
             font-size: 2.1em;
             margin-bottom: 30px;
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
+            color: #00d9ff;
+            border-bottom: 3px solid rgba(0, 217, 255, 0.3);
             padding-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 12px;
             font-weight: 800;
             letter-spacing: -0.5px;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
         }
 
         .icon {
@@ -248,16 +398,16 @@
         }
 
         .video-card {
-            background: #ffffff;
+            background: linear-gradient(135deg, #0f1426 0%, #1a1f3a 100%);
             border-radius: 14px;
             padding: 18px;
-            border: 1px solid rgba(230,230,240,0.9);
-            border-left: 4px solid var(--primary);
-            transition: transform 220ms ease, box-shadow 220ms ease;
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-left: 4px solid rgba(0, 217, 255, 0.4);
+            transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
             cursor: pointer;
             overflow: hidden;
             position: relative;
-            box-shadow: 0 6px 18px rgba(16,24,40,0.04);
+            box-shadow: 0 6px 18px rgba(0, 217, 255, 0.08), inset 0 0 15px rgba(0, 217, 255, 0.02);
         }
 
         .video-card::before {
@@ -266,13 +416,14 @@
 
         .video-card:hover {
             transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 14px 36px rgba(16,24,40,0.08);
+            box-shadow: 0 14px 36px rgba(0, 217, 255, 0.15), inset 0 0 20px rgba(0, 217, 255, 0.04);
+            border-color: rgba(0, 217, 255, 0.4);
         }
 
         .video-placeholder {
             width: 100%;
             height: 180px;
-            background: linear-gradient(135deg, #f5f5f5, #efefef);
+            background: linear-gradient(135deg, #1a1f3a, #0f1426);
             border-radius: 12px;
             display: block;
             margin-bottom: 12px;
@@ -282,8 +433,8 @@
         }
 
         .video-card:hover .video-placeholder {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, #efefef, #e8e8e8);
+            border-color: #00d9ff;
+            background: linear-gradient(135deg, #00d9ff, #0f1426);
         }
 
         .video-placeholder::before {
@@ -300,7 +451,8 @@
 
         .video-card:focus {
             transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(16,24,40,0.08);
+            box-shadow: 0 12px 30px rgba(0, 217, 255, 0.15);
+            border-color: rgba(0, 217, 255, 0.5);
         }
 
         /* smooth transitions site-wide */
@@ -309,14 +461,44 @@
         }
 
         :focus-visible {
-            outline: 3px solid rgba(37,99,235,0.18);
+            outline: 3px solid rgba(0, 217, 255, 0.38);
             outline-offset: 3px;
+        }
+
+        /* visually hidden for screen-reader only live region */
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px; width: 1px;
+            overflow: hidden; clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap; border: 0; padding: 0; margin: -1px;
+        }
+
+        /* inline code and code block styling for programming aesthetic */
+        .inline-code {
+            font-family: 'Courier New', monospace;
+            background: rgba(0,0,0,0.2);
+            color: #9fefff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 0.92em;
+            border: 1px solid rgba(0,217,255,0.06);
+        }
+
+        .code-block {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
+            color: #bff7ff;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,217,255,0.06);
+            overflow-x: auto;
+            box-shadow: inset 0 0 14px rgba(0,217,255,0.02);
         }
 
         .video-title {
             font-size: 1.06rem;
             margin-bottom: 8px;
-            color: #0d0d0d;
+            color: #e0e6ff;
             transition: color 0.2s;
             position: relative;
             z-index: 1;
@@ -324,11 +506,11 @@
         }
 
         .video-card:hover .video-title {
-            color: var(--primary);
+            color: #00d9ff;
         }
 
         .video-description {
-            color: #333;
+            color: #c0c7d8;
             font-size: 0.95em;
             line-height: 1.6;
             position: relative;
@@ -338,14 +520,15 @@
 
         .visit-count {
             display: inline-block;
-            background: rgba(37,99,235,0.95);
-            color: white;
+            background: rgba(0, 217, 255, 0.2);
+            color: #00d9ff;
             padding: 6px 12px;
             border-radius: 999px;
             font-size: 0.82em;
             font-weight: 700;
             margin-top: 10px;
-            box-shadow: 0 6px 18px rgba(37,99,235,0.06);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.2);
+            border: 1px solid rgba(0, 217, 255, 0.3);
         }
         
         .achievement-list {
@@ -355,15 +538,16 @@
         }
 
         .achievement-item {
-            background: var(--light);
+            background: linear-gradient(135deg, #0f1426 0%, #1a1f3a 100%);
             padding: 25px;
             border-radius: 12px;
-            border-left: 5px solid var(--primary);
+            border-left: 5px solid rgba(0, 217, 255, 0.4);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            border: 1px solid #e0e0e0;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.08);
         }
 
         .achievement-item::before {
@@ -371,14 +555,15 @@
         }
 
         .achievement-item:hover {
-            background: var(--light);
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1426 100%);
             transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.15);
+            border-color: rgba(0, 217, 255, 0.2);
         }
 
         .achievement-title {
             font-size: 1.2em;
-            color: #0d0d0d;
+            color: #e0e6ff;
             margin-bottom: 10px;
             font-weight: 700;
             display: flex;
@@ -388,11 +573,11 @@
         }
 
         .achievement-item:hover .achievement-title {
-            color: var(--primary);
+            color: #00d9ff;
         }
 
         .achievement-description {
-            color: #333;
+            color: #c0c7d8;
             line-height: 1.7;
             font-size: 0.95em;
             font-weight: 400;
@@ -407,31 +592,34 @@
         }
 
         .skill-category {
-            background: var(--light);
+            background: linear-gradient(135deg, #0f1426 0%, #1a1f3a 100%);
             border-radius: 12px;
             padding: 24px;
-            border: 1px solid #e0e0e0;
-            border-left: 5px solid var(--primary);
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            border-left: 5px solid rgba(0, 217, 255, 0.4);
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.08);
         }
 
         .skill-category:hover {
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
-            border-left-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.15);
+            border-left-color: #00d9ff;
+            border-color: rgba(0, 217, 255, 0.2);
         }
 
         .skill-category h3 {
-            color: var(--primary);
+            color: #00d9ff;
             margin-bottom: 16px;
             font-size: 1.15em;
             transition: color 0.3s;
             font-weight: 700;
             letter-spacing: -0.3px;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.15);
         }
 
         .skill-category:hover h3 {
-            color: var(--primary-light);
+            color: #00ffff;
         }
 
         .skill-list {
@@ -440,18 +628,18 @@
 
         .skill-list li {
             padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.05);
             display: flex;
             justify-content: space-between;
             transition: all 0.3s;
             font-size: 0.95em;
-            color: #1a1a1a;
+            color: #e0e6ff;
             font-weight: 500;
         }
 
         .skill-list li:hover {
             transform: translateX(4px);
-            color: var(--primary);
+            color: #00d9ff;
         }
 
         .skill-list li:last-child {
@@ -459,14 +647,14 @@
         }
 
         .skill-level {
-            color: #666;
+            color: #a8afc0;
             font-size: 0.85em;
             transition: color 0.3s;
             font-weight: 600;
         }
 
         .skill-list li:hover .skill-level {
-            color: var(--primary);
+            color: #00d9ff;
         }
 
         
@@ -482,40 +670,42 @@
             align-items: center;
             gap: 16px;
             padding: 20px;
-            background: var(--light);
+            background: linear-gradient(135deg, #0f1426 0%, #1a1f3a 100%);
             border-radius: 12px;
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid #e0e0e0;
-            border-left: 5px solid var(--primary);
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            border-left: 5px solid rgba(0, 217, 255, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.08);
         }
 
         .contact-item:hover {
-            background: var(--light);
+            background: linear-gradient(135deg, #1a1f3a 0%, #0f1426 100%);
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.15);
+            border-color: rgba(0, 217, 255, 0.2);
         }
 
         .contact-icon {
             font-size: 1.4em;
-            color: var(--primary);
+            color: #00d9ff;
             transition: transform 0.3s, color 0.3s;
         }
 
         .contact-item:hover .contact-icon {
             transform: scale(1.15);
-            color: var(--primary-light);
+            color: #00ffff;
         }
 
         .contact-item h3 {
-            color: #0d0d0d;
+            color: #e0e6ff;
             font-size: 0.95em;
             font-weight: 700;
             margin-bottom: 4px;
         }
 
         .contact-item p {
-            color: #333;
+            color: #c0c7d8;
             font-size: 0.9em;
             font-weight: 500;
         }
@@ -526,26 +716,27 @@
             z-index: 10;
             text-align: center;
             padding: 40px 20px;
-            background: var(--text-dark);
+            background: #080b1f;
             margin-top: 60px;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
         }
 
         .credits {
             font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.9);
+            color: #c0c7d8;
             margin-bottom: 10px;
             font-weight: 500;
         }
 
         .school-credit {
-            color: var(--primary-light);
+            color: #00d9ff;
             font-weight: 600;
             transition: color 0.3s;
             cursor: pointer;
         }
 
         .school-credit:hover {
-            color: #fff;
+            color: #00ffff;
         }
 
        
@@ -556,24 +747,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
-            background: var(--light);
-            border-radius: 0;
+            background: linear-gradient(135deg, #0f1426 0%, #1a1f3a 100%);
+            border-radius: 12px;
             padding: 40px;
             max-width: 600px;
             width: 90%;
-            border: 1px solid #e0e0e0;
-            border-left: 4px solid var(--primary);
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-left: 4px solid rgba(0, 217, 255, 0.4);
             position: relative;
             transform: scale(0.9);
             opacity: 0;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.1);
         }
 
         .modal.active .modal-content {
@@ -582,14 +774,15 @@
         }
 
         .modal-content h2 {
-            color: var(--primary);
+            color: #00d9ff;
             font-size: 1.5em;
             margin-bottom: 20px;
             font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.15);
         }
 
         .modal-content p {
-            color: var(--text-dark);
+            color: #c0c7d8;
             line-height: 1.7;
         }
 
@@ -598,7 +791,7 @@
             top: 20px;
             right: 20px;
             font-size: 1.5em;
-            color: var(--text-dark);
+            color: #e0e6ff;
             cursor: pointer;
             transition: all 0.3s;
             width: 40px;
@@ -606,13 +799,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0;
-            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            background: rgba(0, 217, 255, 0.05);
         }
 
         .close-modal:hover {
-            color: var(--primary);
-            background: #f5f5f5;
+            color: #00ffff;
+            background: rgba(0, 217, 255, 0.1);
+            border-color: rgba(0, 217, 255, 0.4);
             transform: rotate(90deg);
         }
 
@@ -622,8 +817,8 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: var(--primary);
-            color: white;
+            background: linear-gradient(135deg, #00d9ff, rgba(0, 217, 255, 0.7));
+            color: #080b1f;
             width: 50px;
             height: 50px;
             border-radius: 12px;
@@ -633,7 +828,7 @@
             font-size: 1.3em;
             cursor: pointer;
             z-index: 99;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.4), 0 0 20px rgba(0, 217, 255, 0.2);
             transition: all 0.3s ease;
             opacity: 0;
             visibility: hidden;
@@ -647,9 +842,9 @@
         }
 
         .scroll-top:hover {
-            background: var(--primary-light);
+            background: linear-gradient(135deg, #00ffff, #00d9ff);
             transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 217, 255, 0.5), 0 0 25px rgba(0, 217, 255, 0.3);
         }        
         @media (max-width: 768px) {
             h1 {
@@ -669,9 +864,10 @@
                 gap: 8px;
                 width: 100%;
                 padding: 10px 12px;
-                background: #fff;
+                background: #080b1f;
                 border-radius: 10px;
-                box-shadow: 0 8px 24px rgba(16,24,40,0.06);
+                box-shadow: 0 8px 24px rgba(0, 217, 255, 0.1);
+                border: 1px solid rgba(0, 217, 255, 0.1);
             }
 
             .nav-link {
@@ -705,10 +901,14 @@
     
     <div class="code-background" id="codeBg"></div>
 
-    <header>
+    <header class="animate-slideUp">
         <h1>Lee Gao Le</h1>
         <p class="subtitle" id="animatedSubtitle">Hi I am a Software Engineer</p>
         <div class="application-badge">Portfolio</div>
+        <div class="terminal" aria-hidden="true" id="decorTerminal">
+            <div class="term-line" id="termLine">$ initializing...</div>
+            <div class="term-caret" aria-hidden="true"></div>
+        </div>
     </header>
 
     
@@ -738,7 +938,7 @@
                 <span class="icon"><i class="fas fa-user"></i></span>
                 About Me
             </h2>
-            <p style="font-size: 1.1em; line-height: 1.8; color: #1a1a1a; font-weight: 500;">
+            <p style="font-size: 1.1em; line-height: 1.8; color: var(--text-dark); font-weight: 500;">
                 Hello! I'm Gao Le, a 12-year-old software engineer with a passion for backend development, APIs, and robotics. 
                 I specialize in creating efficient server-side solutions and have experience developing games with millions of visits. 
                 My journey in programming started last year, and I've since developed expertise in API design, database management, 
@@ -924,7 +1124,7 @@
             Portfolio designed and developed by 
             <a href="https://github.com/thegoodlucks" target="_blank" class="school-credit" style="text-decoration: none;">Gao Le</a>
         </p>
-        <p style="margin-top: 20px; color: #7080a0; font-size: 0.9em;">
+        <p style="margin-top: 20px; color: var(--muted); font-size: 0.9em;">
             © 2025 Gao Le | All Rights Reserved
         </p>
     </footer>
@@ -944,6 +1144,9 @@
             <a href="#" id="modalLink" style="display: inline-block; margin-top: 20px; background: var(--primary); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: 600;">View Project</a>
         </div>
     </div>
+
+    <!-- Screen reader live region for announcements -->
+    <div id="srLive" class="visually-hidden" aria-live="polite"></div>
 
     <script>
         const codeBg = document.getElementById('codeBg');
@@ -972,6 +1175,65 @@
             snippet.style.animationDuration = (Math.random() * 15 + 15) + 's';
             codeBg.appendChild(snippet);
         }
+
+        // Entrance animations: stagger sections, cards and other elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const animatedGroups = Array.from(document.querySelectorAll('.section, .video-card, .skill-category, .achievement-item, .contact-item'));
+            if (prefersReduced) {
+                // Minimal motion: make elements visible without animation
+                animatedGroups.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+                // Make terminal static (decorative)
+                const termStatic = document.getElementById('termLine');
+                if (termStatic) termStatic.textContent = '$ ready';
+                return;
+            }
+
+            animatedGroups.forEach((el, i) => {
+                el.style.animation = `slideInUp 520ms cubic-bezier(.2,.9,.2,1) both`;
+                el.style.animationDelay = `${i * 70}ms`;
+            });
+
+            // subtle glow on interactive elements
+            document.querySelectorAll('.video-card, .section, .skill-category, .achievement-item, .contact-item').forEach(el => {
+                el.classList.add('glow-pulse');
+                el.style.animationDelay = '0s';
+                // remove permanent glow after a short time so hover stands out
+                setTimeout(() => el.classList.remove('glow-pulse'), 1600);
+            });
+
+            // Terminal typing decoration in header
+            const term = document.getElementById('termLine');
+            const lines = ['npm run start', 'node server.js', 'git push origin main', 'deploy: success'];
+            let li = 0;
+            function typeLine() {
+                const text = lines[li % lines.length];
+                let idx = 0;
+                if (!term) return;
+                term.textContent = '';
+                const t = setInterval(() => {
+                    term.textContent += text[idx++] || '';
+                    if (idx > text.length) {
+                        clearInterval(t);
+                        setTimeout(() => {
+                            // delete
+                            let del = setInterval(() => {
+                                term.textContent = term.textContent.slice(0, -1);
+                                if (term.textContent.length === 0) {
+                                    clearInterval(del);
+                                    li++;
+                                    setTimeout(typeLine, 300);
+                                }
+                            }, 40);
+                        }, 900);
+                    }
+                }, 40);
+            }
+            setTimeout(typeLine, 800);
+        });
 
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1041,6 +1303,7 @@
                 modalDescription.textContent = 'As the Developer and API Engineer for Meme Factory Tycoon, I was responsible for designing and implementing the backend systems that powered this Roblox game. This included creating efficient APIs for game data, implementing secure player data storage, optimizing server performance to handle high traffic, and ensuring smooth gameplay experiences for over 1.2 million players.';
                 modalLink.href = 'https://www.roblox.com/games/85828793154101/Meme-Factory-Tycoon';
                 modalLink.textContent = 'Play Meme Factory Tycoon';
+                try { document.getElementById('srLive').textContent = 'Opened project Meme Factory Tycoon'; } catch(e){}
             } else if (type === 'insect-land') {
                 modalTitle.textContent = 'My Insect Land';
                 modalImage.src = 'https://i.ibb.co/wNX1kVKW/image.png';
@@ -1048,6 +1311,7 @@
                 modalDescription.textContent = 'As the Analytics Manager for My Insect Land, I implemented comprehensive data tracking systems to monitor player behavior, game performance, and engagement metrics. I developed tools to visualize this data, providing insights that helped improve player retention and game mechanics. My work contributed to understanding how players interact with the game and identifying areas for enhancement.';
                 modalLink.href = 'https://www.roblox.com/games/117562146190458/My-Insect-Land';
                 modalLink.textContent = 'Play My Insect Land';
+                try { document.getElementById('srLive').textContent = 'Opened project My Insect Land'; } catch(e){}
             } else {
                 modalTitle.textContent = 'Robotics Projects';
                 modalImage.src = '';
@@ -1055,6 +1319,7 @@
                 modalDescription.textContent = 'My robotics projects involve programming various robotic systems with a focus on efficient code and reliable performance. I have worked on sensor integration for environmental awareness, motor control algorithms for precise movement, and navigation systems for autonomous operation. These projects demonstrate my ability to apply programming skills to physical systems and solve real-world problems.';
                 modalLink.href = '#';
                 modalLink.textContent = 'View Robotics Projects';
+                try { document.getElementById('srLive').textContent = 'Opened Robotics Projects'; } catch(e){}
             }
             videoModal.style.display = 'flex';
             videoModal.classList.add('active');
