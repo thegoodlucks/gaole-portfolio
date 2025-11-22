@@ -1,139 +1,74 @@
-# Gao Le - Software Engineer Portfolio
+# Lee Gao Le - Robotics & AI Portfolio
 
-## 👋 About Me
-12-year-old software engineer specializing in backend development, APIs, and robotics. Passionate about creating scalable systems and game development.
+<div align="center">
 
-## 🚀 Projects
+![Portfolio](https://img.shields.io/badge/Portfolio-Live-success?style=for-the-badge&logo=google-chrome&logoColor=white)
+![Age](https://img.shields.io/badge/Age-12-blue?style=for-the-badge)
+![Location](https://img.shields.io/badge/Location-Singapore-red?style=for-the-badge)
 
-### Meme Factory Tycoon
-- **Role**: Developer & API Engineer
-- **Visits**: 1.2M+ players
-- **Tech**: Roblox, Backend APIs, Data persistence
-- **Link**: [Play on Roblox](https://www.roblox.com/games/85828793154101/Meme-Factory-Tycoon)
+**A 12-year-old Robotics Engineer and Machine Learning enthusiast from Singapore**
 
-### My Insect Land
-- **Role**: Analytics Manager  
-- **Visits**: 11.4k+ players
-- **Tech**: Data tracking, Player analytics, Performance metrics
-- **Link**: [Play on Roblox](https://www.roblox.com/games/117562146190458/My-Insect-Land)
+[View Portfolio](#) • [Contact](mailto:leegaole1302@gmail.com)
 
-## 💻 Skills
+</div>
 
-### Programming Languages
-- Python (Advanced)
-- JavaScript/TypeScript (Advanced)
-- C++ (Advanced)
-- Java (Intermediate)
-- Luau (Intermediate)
+## 🚀 About Me
 
-### Backend Development
-- API Design & Development
-- Database Management
-- Server Architecture
-- System Optimization
+Hello! I'm Gao Le, a passionate young Robotics Engineer and Machine Learning enthusiast specializing in autonomous systems, computer vision, and intelligent robotics. I develop AI-powered systems that can perceive, learn, and interact with the physical world.
 
-## 📫 Contact
+## 🏆 Notable Achievements
+
+### 🎮 Game Development
+- **Meme Factory Tycoon** - 1.2M+ visits on Roblox
+- **My Insect Land** - 16k+ visits on Roblox
+
+### 🤖 Robotics & AI
+- Autonomous robot development with sensor integration
+- Computer vision and path planning algorithms
+- Machine learning applications and model deployment
+
+## 🛠 Technical Skills
+
+### Robotics & AI
+- **Autonomous Navigation** - Advanced
+- **Computer Vision** - Advanced  
+- **Sensor Fusion** - Advanced
+- **Neural Networks** - Advanced
+- **Path Planning Algorithms** - Advanced
+
+### Programming & Tools
+- **Python** - Advanced
+- **C++** - Advanced
+- **TensorFlow/PyTorch** - Intermediate
+- **OpenCV** - Advanced
+- **Git & Version Control** - Advanced
+
+## 📁 Project Showcase
+
+### Featured Projects:
+- **Meme Factory Tycoon** - Developed backend systems for Roblox game with 1.2M+ visits
+- **My Insect Land** - Managed analytics and data tracking for 16k+ visit Roblox game
+- **Autonomous Navigation System** - Robotics project with LiDAR and computer vision
+- **Bicycle Price Predictor** - Machine learning model for price estimation
+
+## 🌟 Portfolio Features
+
+- **Modern UI/UX** - Sleek, professional design with smooth animations
+- **Responsive Design** - Optimized for all devices
+- **Interactive Elements** - Project modals and engaging navigation
+- **Code Visualization** - Animated code snippets showcasing technical expertise
+- **Accessibility** - WCAG compliant with full keyboard navigation
+
+## 📬 Contact Information
+
 - **Email**: leegaole1302@gmail.com
-- **GitHub**: [thegoodlucks](https://github.com/thegoodlucks)
-- **Roblox**: Aveiums
+- **GitHub**: [github.com/thegoodlucks](https://github.com/thegoodlucks)
+- **Location**: Singapore
 
-## 🛠️ Setup
-```bash
-git clone https://github.com/thegoodlucks/gao-le-portfolio.git
-cd gao-le-portfolio
-# Gao Le — Software Engineer Portfolio
+## 🚀 Quick Start
 
-Hi — this repository contains the single-file portfolio for Gao Le (Lee Gao Le). The site is a dark-themed, accessibility-minded portfolio focused on backend engineering, APIs, robotics, and game development.
-
-## Quick links
-
-- Live file: open `index.html` in a browser to preview the site.
-- GitHub: https://github.com/thegoodlucks
-
-## Why this repo
-
-This is a minimal, static portfolio (HTML / CSS / JS) that showcases projects, technical skills, and contact details. The site emphasizes dark/cyan aesthetics, keyboard accessibility, and subtle programming-inspired animations.
-
-## About
-
-Hello! I'm Gao Le — a young software engineer passionate about backend systems, APIs, and robotics. I focus on building efficient server-side systems and have experience developing games and tools that scale to large audiences.
-
-## Highlights / Projects
-
-### Meme Factory Tycoon
-- **Role:** Developer & API Engineer
-- **Visits:** 1.2M+ players
-- **Tech:** Roblox, backend APIs, server optimization
-- **Link:** https://www.roblox.com/games/85828793154101/Meme-Factory-Tycoon
-
-### My Insect Land
-- **Role:** Analytics Manager
-- **Visits:** 11.4k+ players
-- **Tech:** Data tracking, player analytics, visualization
-- **Link:** https://www.roblox.com/games/117562146190458/My-Insect-Land
-
-### Robotics & Side Projects
-
-- Robotics programming involving sensor integration, motor control algorithms, and navigation systems.
-- Small backend and tooling projects focused on APIs, data persistence, and analytics.
-
-## Skills
-
-**Languages & Tools**
-- Python — Advanced
-- JavaScript / TypeScript — Advanced
-- C++ — Advanced
-- Java — Intermediate
-- Luau — Intermediate
-
-**Backend / Systems**
-- API design & integration
-- Database management
-- Server architecture & optimization
-- Data persistence and analytics
-
-## Accessibility & UX
-
-- Keyboard-first modal and navigation (focus trapping, `:focus-visible` outlines).
-- Respects `prefers-reduced-motion` — animations are reduced for users who prefer less motion.
-- Screen-reader live announcements for modal opens.
-
-## Run / Preview
-
-Open the site locally — it is a static HTML file. From PowerShell (Windows):
-
-```powershell
-git clone https://github.com/thegoodlucks/gao-le-portfolio.git
-cd "gao-le-portfolio"
-start index.html
-```
-
-From a Unix-like shell (macOS / Linux):
+The portfolio is a single HTML file with embedded CSS and JavaScript. To run locally:
 
 ```bash
-git clone https://github.com/thegoodlucks/gao-le-portfolio.git
-cd gao-le-portfolio
-xdg-open index.html   # or `open index.html` on macOS
-```
-
-If you want a tiny local server (useful for some browsers):
-
-```bash
-# Python 3
-python -m http.server 8000
-# then open http://localhost:8000/index.html
-```
-
-## Contact
-
-- Email: leegaole1302@gmail.com
-- GitHub: https://github.com/thegoodlucks
-- Roblox: Aveiums
-
-## Notes for contributors
-
-- The site is intentionally single-file and dependency-free. Keep changes minimal and preserve accessibility features.
-- If adding syntax highlighting, prefer a lightweight CSS-only solution or a small client-side library and keep `prefers-reduced-motion` checks intact.
-
----
-_Portfolio generated and maintained by Gao Le — feel free to open issues or PRs on GitHub._
+# Simply open index.html in your web browser
+open index.html
