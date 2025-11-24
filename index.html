@@ -50,7 +50,6 @@
             pointer-events: none;
         }
 
-        /* Accessibility helpers */
         .skip-link {
             position: absolute;
             left: -999px;
@@ -72,7 +71,6 @@
             z-index: 9999;
         }
 
-        /* reduced motion respect */
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0ms !important; transition-duration: 0ms !important; }
         }
@@ -181,7 +179,6 @@
             }
         }
 
-        /* Utility animation classes */
         .animate-slideUp {
             animation: slideInUp 520ms cubic-bezier(.2,.9,.2,1) both;
         }
@@ -200,7 +197,6 @@
             animation: codeFlicker 2.6s ease-in-out infinite;
         }
 
-        /* (removed decorative header terminal) */
         
         header {
             position: relative;
@@ -424,7 +420,6 @@
             border-color: rgba(0, 217, 255, 0.5);
         }
 
-        /* smooth transitions site-wide */
         a, button, .video-card, .nav-link, .application-badge, .section, .video-placeholder, .modal-content {
             transition: all var(--trans-medium) ease;
         }
@@ -434,7 +429,6 @@
             outline-offset: 3px;
         }
 
-        /* visually hidden for screen-reader only live region */
         .visually-hidden {
             position: absolute !important;
             height: 1px; width: 1px;
@@ -442,7 +436,7 @@
             white-space: nowrap; border: 0; padding: 0; margin: -1px;
         }
 
-        /* inline code and code block styling for programming aesthetic */
+
         .inline-code {
             font-family: 'Courier New', monospace;
             background: rgba(0,0,0,0.2);
@@ -467,7 +461,6 @@
             line-height: 1.45;
         }
 
-        /* token colors for CSS-only syntax highlighting */
         .code-block .kw { color: #7ef5ff; font-weight: 700; }
         .code-block .fn { color: #9fefff; }
         .code-block .str { color: #a8f0c8; }
@@ -614,14 +607,16 @@
         }
 
         .skill-list li {
-            padding: 10px 0;
+            padding: 14px 0;
             border-bottom: 1px solid rgba(0, 217, 255, 0.05);
             display: flex;
             justify-content: space-between;
+            align-items: center;
             transition: all 0.3s;
             font-size: 0.95em;
             color: #e0e6ff;
             font-weight: 500;
+            gap: 12px;
         }
 
         .skill-list li:hover {
@@ -634,14 +629,49 @@
         }
 
         .skill-level {
-            color: #a8afc0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 0.85em;
             transition: color 0.3s;
             font-weight: 600;
+            min-width: 120px;
+            justify-content: flex-end;
         }
 
-        .skill-list li:hover .skill-level {
+        .skill-level-bar {
+            display: inline-block;
+            height: 6px;
+            background: rgba(0, 217, 255, 0.15);
+            border-radius: 3px;
+            overflow: hidden;
+            width: 60px;
+            position: relative;
+            border: 1px solid rgba(0, 217, 255, 0.25);
+        }
+
+        .skill-level-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d9ff, #7ef5ff);
+            border-radius: 3px;
+            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.4), inset 0 0 4px rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-level-text {
+            color: #a8afc0;
+            transition: color 0.3s;
+            font-size: 0.9em;
+            min-width: 55px;
+            text-align: right;
+        }
+
+        .skill-list li:hover .skill-level-text {
             color: #00d9ff;
+        }
+
+        .skill-list li:hover .skill-level-fill {
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.6), inset 0 0 6px rgba(255, 255, 255, 0.3);
         }
 
         
@@ -928,22 +958,9 @@
                 path planning algorithms, and neural network deployment. I'm passionate about creating AI-powered systems 
                 that can perceive, learn, and interact with the physical world.
             </p>
-            <!-- Animated code sample (C++ / Python) -->
             <pre class="code-block" aria-hidden="true" style="margin-top:18px;"><code id="animatedCode" class="code-content"></code></pre>
 
-            <div class="skills-container" style="margin-top: 30px;">
-                <div class="skill-category">
-                    <h3><i class="fas fa-brain"></i> AI & Robotics Focus</h3>
-                    <ul class="skill-list">
-                        <li>Autonomous Navigation <span class="skill-level">Advanced</span></li>
-                        <li>Computer Vision <span class="skill-level">Advanced</span></li>
-                        <li>Sensor Fusion <span class="skill-level">Advanced</span></li>
-                        <li>Neural Networks <span class="skill-level">Advanced</span></li>
-                        <li>Reinforcement Learning <span class="skill-level">Intermediate</span></li>
-                        <li>Robot Operating System <span class="skill-level">Intermediate</span></li>
-                    </ul>
-                </div>
-            </div>
+
         </section>
 
         
@@ -1021,38 +1038,38 @@
         <section id="skills" class="section">
             <h2 class="section-title">
                 <span class="icon"><i class="fas fa-lightbulb"></i></span>
-                Robotics & AI Skills
+                Programming Skills & Tools
             </h2>
             <div class="skills-container">
                 <div class="skill-category">
                     <h3><i class="fas fa-robot"></i> Robotics & Automation</h3>
                     <ul class="skill-list">
-                        <li>Autonomous Navigation<span class="skill-level">Advanced</span></li>
-                        <li>Sensor Integration <span class="skill-level">Advanced</span></li>
-                        <li>Path Planning Algorithms <span class="skill-level">Advanced</span></li>
-                        <li>Motor Control <span class="skill-level">Advanced</span></li>
-                        <li>ROS (Robot Operating System) <span class="skill-level">Intermediate</span></li>
-                        <li>Real-time Systems <span class="skill-level">Intermediate</span></li>
+                        <li>C/C++ Programming<span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Python Programming <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Path Planning Algorithms <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Motor Control <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Intergration with AI <span class="skill-level"><span class="skill-level-text">Intermediate</span></span></li>
+                        <li>Arduino <span class="skill-level"><span class="skill-level-text">Intermediate</span></span></li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3><i class="fas fa-brain"></i> Machine Learning & AI</h3>
                     <ul class="skill-list">
-                        <li>Computer Vision <span class="skill-level">Advanced</span></li>
-                        <li>Neural Networks <span class="skill-level">Advanced</span></li>
-                        <li>Reinforcement Learning <span class="skill-level">Intermediate</span></li>
-                        <li>Data Preprocessing <span class="skill-level">Advanced</span></li>
-                        <li>Model Deployment <span class="skill-level">Intermediate</span></li>
+                        <li>Computer Vision <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Neural Networks <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Reinforcement Learning <span class="skill-level"><span class="skill-level-text">Intermediate</span></span></li>
+                        <li>Data Preprocessing <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Model Deployment <span class="skill-level"><span class="skill-level-text">Intermediate</span></span></li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3><i class="fas fa-laptop-code"></i> Programming & Tools</h3>
                     <ul class="skill-list">
-                        <li>Python <span class="skill-level">Advanced</span></li>
-                        <li>C++ <span class="skill-level">Advanced</span></li>
-                        <li>TensorFlow/PyTorch <span class="skill-level">Intermediate</span></li>
-                        <li>OpenCV <span class="skill-level">Advanced</span></li>
-                        <li>Git & Version Control <span class="skill-level">Advanced</span></li>
+                        <li>Python <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>C/C++ <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Assembly <span class="skill-level"><span class="skill-level-text">Developing</span></span></li>
+                        <li>DSA <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
+                        <li>Git & Version Control <span class="skill-level"><span class="skill-level-text">Advanced</span></span></li>
                     </ul>
                 </div>
             </div>
@@ -1085,11 +1102,11 @@
                 </div>
                 <div class="contact-item">
                     <div class="contact-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-check-circle"></i>
                     </div>
                     <div>
                         <h3>Roblox Studios</h3>
-                        <p>Aveiums</p>
+                        <p><a href="https://www.roblox.com/users/1234567890/profile" target="_blank" style="color: #00d9ff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='#00ffff'" onmouseout="this.style.color='#00d9ff'">Aveiums</a></p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -1132,7 +1149,6 @@
         </div>
     </div>
 
-    <!-- Screen reader live region for announcements -->
     <div id="srLive" class="visually-hidden" aria-live="polite"></div>
 
     <script>
@@ -1163,12 +1179,10 @@
             codeBg.appendChild(snippet);
         }
 
-        // Entrance animations: stagger sections, cards and other elements
         document.addEventListener('DOMContentLoaded', () => {
             const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const animatedGroups = Array.from(document.querySelectorAll('.section, .video-card, .skill-category, .achievement-item, .contact-item'));
             if (prefersReduced) {
-                // Minimal motion: make elements visible without animation
                 animatedGroups.forEach(el => {
                     el.style.opacity = '1';
                     el.style.transform = 'none';
@@ -1181,18 +1195,14 @@
                 el.style.animationDelay = `${i * 70}ms`;
             });
 
-            // subtle glow on interactive elements
             document.querySelectorAll('.video-card, .section, .skill-category, .achievement-item, .contact-item').forEach(el => {
                 el.classList.add('glow-pulse');
                 el.style.animationDelay = '0s';
-                // remove permanent glow after a short time so hover stands out
                 setTimeout(() => el.classList.remove('glow-pulse'), 1600);
             });
 
-            // Animated code examples (C++ / Python) — crossfade highlighted samples
             const animatedCode = document.getElementById('animatedCode');
             const examples = [
-                // C++ Robotics example
                 '<div class="comment">// C++: Robot navigation control</div>\n' +
                 '<div><span class="kw">void</span> <span class="fn">navigateTo</span>(<span class="kw">double</span> x, <span class="kw">double</span> y) {</div>\n' +
                 '<div>&nbsp;&nbsp;<span class="kw">auto</span> path = <span class="fn">planPath</span>(current_pose, {x, y});</div>\n' +
@@ -1201,7 +1211,6 @@
                 '<div>&nbsp;&nbsp;}</div>\n' +
                 '<div>}</div>',
 
-                // Python ML example
                 '<div class="comment"># Python: Neural network training</div>\n' +
                 '<div><span class="kw">def</span> <span class="fn">train_model</span>(<span class="var">X_train</span>, <span class="var">y_train</span>):</div>\n' +
                 '<div>&nbsp;&nbsp;model = <span class="fn">Sequential</span>([</div>\n' +
@@ -1216,13 +1225,11 @@
             let exIndex = 0;
             function showExample(i) {
                 if (!animatedCode) return;
-                // fade out
                 animatedCode.style.transition = 'opacity 320ms ease, transform 320ms ease';
                 animatedCode.style.opacity = '0';
                 animatedCode.style.transform = 'translateY(8px)';
                 setTimeout(() => {
                     animatedCode.innerHTML = examples[i];
-                    // ensure token colors apply, then fade in
                     requestAnimationFrame(() => {
                         animatedCode.style.opacity = '1';
                         animatedCode.style.transform = 'translateY(0)';
@@ -1230,12 +1237,10 @@
                 }, 260);
             }
 
-            // initial state
             if (animatedCode) {
                 animatedCode.style.opacity = '0';
                 animatedCode.style.transform = 'translateY(8px)';
                 showExample(exIndex);
-                // cycle every 3.6s
                 setInterval(() => {
                     exIndex = (exIndex + 1) % examples.length;
                     showExample(exIndex);
@@ -1281,7 +1286,6 @@
         const modalLink = document.getElementById('modalLink');
         const modalImage = document.getElementById('modalImage');
         
-        // Focus management for modal
         let _lastFocused = null;
         function trapTabKey(e) {
             if (e.key !== 'Tab') return;
@@ -1332,7 +1336,6 @@
             videoModal.style.display = 'flex';
             videoModal.classList.add('active');
             videoModal.setAttribute('aria-hidden', 'false');
-            // focus management
             setTimeout(() => {
                 try { closeModal.focus(); } catch (e) {}
             }, 50);
@@ -1367,7 +1370,6 @@
             }
         });
 
-        // global escape key to close modal
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && videoModal.classList.contains('active')) {
                 closeModal.click();
