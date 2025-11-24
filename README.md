@@ -70,5 +70,5 @@ Hello! I'm Gao Le, a passionate young Robotics Engineer and Machine Learning ent
 The portfolio is a single HTML file with embedded CSS and JavaScript. To run locally:
 
 ```bash
-# Simply open index.html in your web browser
+# Simply open index.html in your web browser.
 open index.html
