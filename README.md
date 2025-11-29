@@ -62,7 +62,7 @@ Hello! I'm Gao Le, a passionate young Robotics Engineer and Machine Learning ent
 ## 📬 Contact Information
 
 - **Email**: leegaole1302@gmail.com
-- **GitHub**: [github.com/thegoodlucks](https://github.com/thegoodlucks)
+- **GitHub**: [msq2010](https://github.com/msq2010)
 - **Location**: Singapore
 
 ## 🚀 Quick Start
